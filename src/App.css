@@ -139,6 +139,40 @@
   margin: 0 0 1.5rem;
 }
 
+/* Quote of the Day */
+.quote-card {
+  margin: 0 0 1.75rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+}
+
+.quote-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 0.6rem;
+}
+
+.quote-text {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.quote-author {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 /* Home cards */
 .card-grid {
   display: grid;
@@ -334,6 +368,29 @@
 
 .chat-input {
   flex: 1;
+}
+
+/* Doc Q&A */
+.doc-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.doc-meta .hint {
+  margin-top: 0;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 /* History */
