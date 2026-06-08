@@ -2,18 +2,39 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+
+  /* Overridden at runtime by the theme hook */
+  --primary: #646cff;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #242424;
+  --fg: rgba(255, 255, 255, 0.87);
+  --muted: #888;
+  --surface: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.15);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --fg: #213547;
+  --muted: #6b7280;
+  --surface: rgba(0, 0, 0, 0.05);
+  --border: rgba(0, 0, 0, 0.12);
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  color: var(--fg);
+  background-color: var(--bg);
+  transition: background-color 0.25s, color 0.25s;
 }
 
 code {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--surface);
   padding: 0.1em 0.35em;
   border-radius: 4px;
   font-size: 0.9em;
