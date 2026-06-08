@@ -13,12 +13,14 @@ export type ChatMessage = { role: 'user' | 'assistant'; content: string }
 /**
  * Stream a chat completion. Calls `onText` with each text delta as it arrives,
  * and resolves with the full assistant reply. Throws if no API key is set or
- * the request fails.
+ * the request fails. Pass `system` to override the default system prompt for
+ * task-specific tools (e.g. the Summarizer).
  */
 export async function streamChat(
   messages: ChatMessage[],
   onText: (delta: string) => void,
   signal?: AbortSignal,
+  system: string = SYSTEM_PROMPT,
 ): Promise<string> {
   const apiKey = getApiKey()
   if (!apiKey) {
@@ -31,7 +33,7 @@ export async function streamChat(
     {
       model: getModel(),
       max_tokens: 4096,
-      system: SYSTEM_PROMPT,
+      system,
       messages,
     },
     { signal },
