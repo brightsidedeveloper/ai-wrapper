@@ -12,17 +12,70 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--primary);
   color: #fff;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, filter 0.25s;
 }
 
 button:hover {
-  border-color: #646cff;
+  filter: brightness(1.1);
 }
 
 .hint {
-  color: #888;
+  color: var(--muted);
   font-size: 0.9em;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.toolbar-label {
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+.mode-toggle {
+  background-color: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--border);
+}
+
+.swatches {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.swatch {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.1s, border-color 0.15s;
+}
+
+.swatch:hover {
+  filter: none;
+  transform: scale(1.15);
+}
+
+.swatch[aria-pressed='true'] {
+  border-color: var(--fg);
 }
