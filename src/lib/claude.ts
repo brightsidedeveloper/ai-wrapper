@@ -45,3 +45,53 @@ export async function streamChat(
     .map((b) => b.text)
     .join('')
 }
+
+const DOC_QA_SYSTEM = [
+  'You answer questions strictly about the document the user provides, which is',
+  'given below between <document> tags.',
+  '',
+  'Rules:',
+  '- Base every answer ONLY on the document. Do not use outside knowledge.',
+  '- After each claim, cite the supporting text by quoting the relevant passage',
+  '  verbatim in quotation marks.',
+  "- If the answer is not contained in the document, say so plainly (e.g. \"The",
+  '  document does not address that.") instead of guessing.',
+  '- Be concise.',
+].join('\n')
+
+/**
+ * Stream an answer to a question grounded in `document`. `history` is the prior
+ * Q&A turns (must start with a user turn). Behaves like `streamChat`: calls
+ * `onText` with each delta and resolves with the full answer.
+ */
+export async function streamDocQA(
+  document: string,
+  history: ChatMessage[],
+  onText: (delta: string) => void,
+  signal?: AbortSignal,
+): Promise<string> {
+  const apiKey = getApiKey()
+  if (!apiKey) {
+    throw new Error('No API key set. Add one in Settings first.')
+  }
+
+  const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true })
+
+  const stream = client.messages.stream(
+    {
+      model: getModel(),
+      max_tokens: 4096,
+      system: `${DOC_QA_SYSTEM}\n\n<document>\n${document}\n</document>`,
+      messages: history,
+    },
+    { signal },
+  )
+
+  stream.on('text', onText)
+
+  const final = await stream.finalMessage()
+  return final.content
+    .filter((b): b is Anthropic.TextBlock => b.type === 'text')
+    .map((b) => b.text)
+    .join('')
+}
