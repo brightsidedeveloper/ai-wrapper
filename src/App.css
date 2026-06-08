@@ -241,6 +241,42 @@
   color: var(--muted);
 }
 
+/* File dropzone (Contract Review) */
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  background: var(--bg);
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dropzone:hover,
+.dropzone:focus-visible,
+.dropzone.dragging {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--surface);
+}
+
+.dropzone-icon {
+  font-size: 1.8rem;
+}
+
+.dropzone-name {
+  font-weight: 600;
+}
+
+.dropzone-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .tool-output {
   background: var(--surface);
   border: 1px solid var(--border);
