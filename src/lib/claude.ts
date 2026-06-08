@@ -12,9 +12,10 @@ export type ChatMessage = { role: 'user' | 'assistant'; content: string }
 
 /**
  * Stream a chat completion. Calls `onText` with each text delta as it arrives,
- * and resolves with the full assistant reply. Throws if no API key is set or
- * the request fails. Pass `system` to override the default system prompt for
- * task-specific tools (e.g. the Summarizer).
+ * and resolves with the full assistant reply. Pass `system` to override the
+ * default conversational system prompt for task-specific tools (e.g. the
+ * Summarizer or Contract Review). Throws if no API key is set or the request
+ * fails.
  */
 export async function streamChat(
   messages: ChatMessage[],
