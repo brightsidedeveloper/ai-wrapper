@@ -334,6 +334,29 @@
   flex: 1;
 }
 
+/* Doc Q&A */
+.doc-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.doc-meta .hint {
+  margin-top: 0;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 /* History */
 .history-list {
   list-style: none;
