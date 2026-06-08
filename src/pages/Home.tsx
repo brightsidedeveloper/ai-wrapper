@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
 import { routes } from '../routes'
 import Page from '../components/Page'
+import QuoteOfTheDay from '../components/QuoteOfTheDay'
 
 export default function Home() {
   const tools = routes.filter((r) => !['/', '/history', '/settings'].includes(r.path))
   return (
     <Page title="AI Toolkit" subtitle="One workspace, many AI tools. Pick one to get started.">
+      <QuoteOfTheDay />
       <div className="card-grid">
         {tools.map((t) => (
           <Link key={t.path} to={t.path} className="tool-card">
